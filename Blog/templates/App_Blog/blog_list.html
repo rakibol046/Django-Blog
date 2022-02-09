@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
+
 {% block title_block %}
     Blog List
 {% endblock%}
 
 {% block body_block %}
 
-Blog List
+{% for blog in blogs %}
+<div class="blog p-3 mt-3 border border-primary border-2">
+    <h1>{{blog.blog_title}}</h1>
+    <strong>{{blog.publish_date}}</strong>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-4">
+            <img src="/media/{{blog.blog_image}}" alt="{{blog.blog_title}}" title="{{blog.blog_title}}" width="100%">
+        </div>
+        <div class="col-sm-12 col-lg-8">
+            <p>{{blog.blog_content|range_filter}} <br> <a href="{% url 'App_Blog:blog_details' slug=blog.slug %}">Read More</a></p>
+            <strong>Posted By <i><a href="#">{{blog.author}}</a></i></strong>
+        </div>
+    </div>
+
+</div>
+
+
+{% endfor %}
     
 {% endblock%}

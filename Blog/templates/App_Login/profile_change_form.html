@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}
+    Update Profile
+{% endblock%}
+
+{% block body_block %}
+    <h1>Create New Account</h1>
+    {% if changed %}
+    <div class="alert alert-success">Update Successfully!</div>
+    {% endif %}
+    <form action="" method="post">
+        {{form|crispy}}
+        {% csrf_token %}
+        <button class="btn btn-primary btn-sm" type="submit">Update</button>
+    </form>
+    
+    
+{% endblock%}
